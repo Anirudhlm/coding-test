@@ -82,15 +82,15 @@ class Earthquakes(object):
             'latitude' : latitude,
             'type': 'neiccatalog'}
         params = urlencode(coordinates)
-        test_url = 'https://earthquake.usgs.gov/ws/geoserve/regions.json?' + params
-        location = json.load(urlopen(test_url))['neiccatalog']['features']
+        location_url = self.usgs_regions_url + '?' + params
+        location = json.load(urlopen(location_url))['neiccatalog']['features']
         name = location[0]['properties']['name']
         return name
 
     def log_earthquakes(self):
         """Log results in correct format"""
-        self._filter_earthquakes()
-        # self._filter_earthquakes_by_coordinates()
+        # self._filter_earthquakes()
+        self._filter_earthquakes_by_coordinates()
         for i in range(len(self.filtered_earthquakes)):
             time = self._convert_time(self.filtered_earthquakes[i]['properties']['time'])
             place = self.filtered_earthquakes[i]['properties']['place']
