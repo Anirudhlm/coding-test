@@ -1,3 +1,3 @@
 # Coding Test
 
-## Execute: ``` python3 solution.py```
+*Execute:* ``` python3 solution.py```
